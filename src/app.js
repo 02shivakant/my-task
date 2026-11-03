@@ -4,6 +4,7 @@ const app = express();
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
+
 const {
     authenticateUser,
     authorizeRoles
@@ -11,6 +12,9 @@ const {
 
 const errorhandler = require('./middlewares/error.middleware');
 
+
+// slots bodies
+const slotRoutes = require('./routes/slot.routes');
 
 // Health check route
 app.get('/', (req, res) => {
@@ -31,5 +35,6 @@ app.get(
         });
     }
 );
+app.use('/slots', slotRoutes);
 app.use(errorhandler)
 module.exports = app;
